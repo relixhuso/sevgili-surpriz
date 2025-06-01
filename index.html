@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💖 Mini Sürpriz 💖</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      background-color: #fff0f5;
+      padding: 50px;
+      overflow: hidden;
+    }
+
+    .emoji {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff69b4;
+      z-index: 2;
+    }
+
+    #buttons {
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+      position: relative;
+    }
+
+    #yesBtn {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #eee;
+      color: #555;
+    }
+
+    #finalMessage {
+      display: none;
+      margin-top: 50px;
+      font-size: 24px;
+      color: #ff1493;
+      z-index: 2;
+    }
+
+    /* Kalpler */
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: red;
+      animation: fall linear infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="emoji">🥰</div>
+  <h1>Sen güzel misin?</h1>
+  <div id="buttons">
+    <button id="yesBtn">Evet</button>
+    <button id="noBtn">Hayır</button>
+  </div>
+  <div id="finalMessage">
+    <div class="emoji">😍</div>
+    <p>Çooook güzel olduğunu biliyordum! Seni çooook seviyorum bitanem 💖</p>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const finalMessage = document.getElementById('finalMessage');
+    let yesSize = 1;
+
+    function showFinalMessage() {
+      document.getElementById('buttons').style.display = 'none';
+      document.querySelector('h1').style.display = 'none';
+      document.querySelector('.emoji').style.display = 'none';
+      finalMessage.style.display = 'block';
+    }
+
+    noBtn.addEventListener('click', () => {
+      yesSize += 0.2;
+      yesBtn.style.transform = `scale(${yesSize})`;
+      yesBtn.style.zIndex = 1000; // Evet butonunu üste al
+      yesBtn.style.position = "relative";
+    });
+
+    yesBtn.addEventListener('click', () => {
+      showFinalMessage();
+    });
+
+    // S harfli kalpler
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.textContent = '❤️S';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 300); // Her 300ms’de bir kalp
+  </script>
+</body>
+</body>
+</html>
